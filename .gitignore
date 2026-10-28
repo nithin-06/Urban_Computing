@@ -149,5 +149,4 @@ logs/
 saved_models/
 *.pt
 *.pth
-*.log
 nohup.out
