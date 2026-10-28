@@ -141,3 +141,13 @@ nohup.out
 .idea/
 run_nohup.sh
 logs/
+
+# added for our project
+venv/
+.venv/
+logs/
+saved_models/
+*.pt
+*.pth
+*.log
+nohup.out
