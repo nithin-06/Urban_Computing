@@ -150,3 +150,8 @@ saved_models/
 *.pt
 *.pth
 nohup.out
+results/smoke/
+results/smoke/
+results/smoke/
+results/smoke/
+results/smoke/
