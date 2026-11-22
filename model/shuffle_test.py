@@ -67,7 +67,7 @@ def main():
             data_path, tod=True, dow=True, batch_size=cfg["batch_size"])
         n_all = cfg["num_nodes"]
         z = normalise_descriptors(sensor_descriptors(data_path), np.arange(n_all))
-        for vkey in ("original", "spatial", "factorised", "generated"):
+        for vkey in ("original", "spatial", "factorised", "generated", "noadp"):
             for seed in (0, 1, 2):
                 ckpt = os.path.join(ROOT, "saved_models", f"{ds}_{vkey}_s{seed}.pt")
                 if not os.path.exists(ckpt):
