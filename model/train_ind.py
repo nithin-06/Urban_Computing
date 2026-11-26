@@ -83,7 +83,7 @@ def run_train(args):
     dataset = args.dataset.upper()
     vkey = args.variant
     tag = f"{dataset}_{vkey}_split{args.split_seed}"
-    out_dir = os.path.join(ROOT, "results", "ind_smoke" if args.smoke else "ind")
+    out_dir = os.path.join(ROOT, "results", "ind_smoke" if args.smoke else ("ind" if args.desc_days == 7 else f"ind_d{args.desc_days}"))
     os.makedirs(out_dir, exist_ok=True)
     res_path = os.path.join(out_dir, f"{tag}.json")
     if os.path.exists(res_path) and not args.force:
@@ -127,7 +127,7 @@ def run_train(args):
         print(tag, res["new_in_all"])
         return
 
-    z = normalise_descriptors(sensor_descriptors(data_path), seen_idx)
+    z = normalise_descriptors(sensor_descriptors(data_path, n_days=args.desc_days), seen_idx)
 
     def loader(x, y, shuffle):
         ds = torch.utils.data.TensorDataset(
@@ -248,6 +248,7 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--time_dim", type=int, default=16)
     ap.add_argument("--desc_hidden", type=int, default=128)
+    ap.add_argument("--desc_days", type=int, default=7)
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
